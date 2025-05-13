@@ -634,6 +634,9 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
     {
         // Create new controller passing reference to the AVPlayerLayer
         self._playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+        AVAsset *asset = _player.currentItem.asset;
+        AVVideoComposition *composition = [AVVideoComposition videoCompositionWithPropertiesOfAsset:asset];
+        _player.currentItem.videoComposition = composition;
         UIViewController* vc = [[[UIApplication sharedApplication] keyWindow] rootViewController];
         self._playerLayer.frame = frame;
         self._playerLayer.needsDisplayOnBoundsChange = YES;
